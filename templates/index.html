@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Student Coding Performance Tracker</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>Student Coding Performance Tracker</h1>
+
+        <p class="subtitle">
+            Track student coding practice and performance
+        </p>
+
+
+        <div class="form-box">
+
+            <h2>Add Student Performance</h2>
+
+            <form method="POST">
+
+                <label>Student Name</label>
+
+                <input type="text"
+                       name="name"
+                       required>
+
+
+                <label>USN</label>
+
+                <input type="text"
+                       name="usn"
+                       required>
+
+
+                <label>Coding Platform</label>
+
+                <select name="platform" required>
+
+                    <option value="">
+                        Select Platform
+                    </option>
+
+                    <option value="HackerRank">
+                        HackerRank
+                    </option>
+
+                    <option value="LeetCode">
+                        LeetCode
+                    </option>
+
+                    <option value="CodeChef">
+                        CodeChef
+                    </option>
+
+                    <option value="GeeksforGeeks">
+                        GeeksforGeeks
+                    </option>
+
+                    <option value="HackerEarth">
+                        HackerEarth
+                    </option>
+
+                </select>
+
+
+                <label>Problems Solved</label>
+
+                <input type="number"
+                       name="problems"
+                       min="0"
+                       required>
+
+
+                <label>Score</label>
+
+                <input type="number"
+                       name="score"
+                       min="0"
+                       max="100"
+                       required>
+
+
+                <button type="submit">
+                    Add Student
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <div class="table-box">
+
+            <h2>Student Performance</h2>
+
+            {% if students %}
+
+            <table>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>USN</th>
+                    <th>Platform</th>
+                    <th>Problems</th>
+                    <th>Score</th>
+                    <th>Performance</th>
+
+                </tr>
+
+
+                {% for student in students %}
+
+                <tr>
+
+                    <td>{{ student.name }}</td>
+
+                    <td>{{ student.usn }}</td>
+
+                    <td>{{ student.platform }}</td>
+
+                    <td>{{ student.problems }}</td>
+
+                    <td>{{ student.score }}</td>
+
+                    <td>{{ student.performance }}</td>
+
+                </tr>
+
+                {% endfor %}
+
+            </table>
+
+            {% else %}
+
+            <p>No student records available.</p>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>
